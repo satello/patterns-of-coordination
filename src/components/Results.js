@@ -99,7 +99,7 @@ export default ({resultsMatrix, restart}) => {
                 </Col>
                 <Col lg={12}>
                   <PatternName>{k.toUpperCase()}</PatternName>
-                  <Score>{answersMap[k].score}</Score>
+                  <Score>{(((16 - Number(answersMap[k].score)) / 24) * 100).toFixed(1)} %</Score>
                 </Col>
               </Row>
             </ScoreCol>

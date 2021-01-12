@@ -1,5 +1,38 @@
 import { Row, Col, Button } from 'antd'
 import React from 'react'
+import styled from 'styled-components'
+import SHAPE from '../assets/SHAPE.png'
+import HANG from '../assets/HANG.png'
+import SWING from '../assets/SWING.png'
+import THRUST from '../assets/THRUST.png'
+
+const ResultsBox = styled.div`
+  margin-top: 50px;
+  padding: 20px;
+`
+const PatternImg = styled.img`
+  width: 100%;
+  padding: 10px;
+`
+const PatternName = styled.div`
+  margin-top: 25px;
+  font-size: 45px;
+  font-weight: 600;
+  text-align: center;
+`
+const Score = styled.div`
+  font-size: 35px;
+  font-weight: 500;
+  text-align: center;
+`
+const ScoreCol = styled(Col)`
+  padding: 10px;
+  box-shadow: 0px 6px 24px rgba(77, 0, 180, 0.05);
+
+  &:hover {
+    box-shadow: 0px 6px 24px rgba(77, 0, 180, 0.25);
+  }
+`
 
 const answerIndexMap = [
   'shape', 'swing', 'hang', 'thrust'
@@ -26,19 +59,54 @@ export default ({resultsMatrix, restart}) => {
     return scores
   }
   const scores = getScores()
+  const answersMap = {
+    "shape": {
+      score: scores[0],
+      img: SHAPE
+    },
+    "swing": {
+      score: scores[1],
+      img: SWING
+    },
+    "hang": {
+      score: scores[2],
+      img: HANG
+    },
+    "thrust": {
+      score: scores[3],
+      img: THRUST
+    },
+  }
 
   return (
     <div>
       <Row>
-        <Col lg={4} offset={20}>
+        <Col lg={10}>
+          <div style={{fontWeight: 600, fontSize: '24px'}}>Results</div>
+        </Col>
+        <Col lg={4} offset={10}>
           <Button onClick={restart}>Start Over</Button>
         </Col>
       </Row>
-      {
-        answerIndexMap.map((k, i) => (
-          <div>{k.toUpperCase()}: {scores[i]}</div>
-        ))
-      }
+      <ResultsBox>
+        <Row>
+        {
+          Object.keys(answersMap).map((k) => (
+            <ScoreCol lg={12}>
+              <Row>
+                <Col lg={12}>
+                  <PatternImg src={answersMap[k].img} />
+                </Col>
+                <Col lg={12}>
+                  <PatternName>{k.toUpperCase()}</PatternName>
+                  <Score>{answersMap[k].score}</Score>
+                </Col>
+              </Row>
+            </ScoreCol>
+          ))
+        }
+        </Row>
+      </ResultsBox>
     </div>
   )
 }

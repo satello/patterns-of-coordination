@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react'
 import ListSorter from '../components/ListSorter'
 import Results from '../components/Results'
 import styled from 'styled-components'
+import Banner from '../assets/banner.png'
+import _ from 'lodash'
 
 const PatternsOfCoordinationContainer = styled.div`
   margin-top: 75px;
@@ -14,6 +16,10 @@ const TitleDiv = styled.div`
 `
 const ButtonsRow = styled(Row)`
   margin-top: 35px;
+`
+const BannerImg = styled.img`
+  margin-top:0px;
+  width: 100%;
 `
 
 // https://motion.ant.design/exhibition/demo/list-sort
@@ -41,7 +47,7 @@ const answersMatrix = [
 ]
 
 export default () => {
-  const [ questionIndex, setQuestionIndex ] = useState(0)
+  const [ questionIndex, setQuestionIndex ] = useState(-1)
   const [ answers, setAnswers ] = useState(answersMatrix)
 
   const resetTest = () => {
@@ -56,7 +62,7 @@ export default () => {
       const _index = options[questionIndex].indexOf(_phrase)
       _answers[_index] = i
     }
-    const _answersCopy = [ ...answers ]
+    const _answersCopy = _.cloneDeep(answers)
     _answersCopy[questionIndex] = _answers
     setAnswers(_answersCopy)
   }
@@ -65,30 +71,45 @@ export default () => {
   return (
     <PatternsOfCoordinationContainer>
       {
-        questionIndex === questions.length ? (
-          <Results resultsMatrix={answers} restart={resetTest} />
-        ) : (
+        questionIndex === -1 ? (
           <div>
             <Row>
               <Col lg={19}>
-                <div>Instructions: Arrange the given options from <i>most</i> like you to <i>least</i> like you. (drag and drop)</div>
+                <div style={{fontWeight: 600}}>“Everything that irritates us about others can lead us to an understanding about ourselves.” - Carl Jung </div>
               </Col>
               <Col lg={4} offset={1}>
-                <Button onClick={resetTest}>Start Over</Button>
+                <Button type="primary" onClick={() => setQuestionIndex(0)}>Start!</Button>
               </Col>
             </Row>
-            <TitleDiv>{questions[questionIndex]}:</TitleDiv>
-            <ListSorter data={options[questionIndex]} newchildren={newChildren} />
-            <ButtonsRow>
-              <Col lg={2} offset={18}>
-                <Button disabled={questionIndex === 0} onClick={() => setQuestionIndex(questionIndex - 1)}>Back</Button>
-              </Col>
-              <Col lg={2}>
-                <Button type='primary' disabled={questionIndex === questions.length} onClick={() => setQuestionIndex(questionIndex + 1)}>Next</Button>
-              </Col>
-            </ButtonsRow>
+            <BannerImg src={Banner} />
           </div>
+        ) : (
+          questionIndex === questions.length ? (
+            <Results resultsMatrix={answers} restart={resetTest} />
+          ) : (
+            <div>
+              <Row>
+                <Col lg={19}>
+                  <div>Instructions: Arrange the given options from <i>most</i> like you to <i>least</i> like you. (drag and drop)</div>
+                </Col>
+                <Col lg={4} offset={1}>
+                  <Button onClick={resetTest}>Start Over</Button>
+                </Col>
+              </Row>
+              <TitleDiv>{questions[questionIndex]}:</TitleDiv>
+              <ListSorter data={options[questionIndex]} newchildren={newChildren} />
+              <ButtonsRow>
+                <Col lg={2} offset={18}>
+                  <Button disabled={questionIndex === 0} onClick={() => setQuestionIndex(questionIndex - 1)}>Back</Button>
+                </Col>
+                <Col lg={2}>
+                  <Button type='primary' disabled={questionIndex === questions.length} onClick={() => setQuestionIndex(questionIndex + 1)}>Next</Button>
+                </Col>
+              </ButtonsRow>
+            </div>
+          )
         )
+
       }
     </PatternsOfCoordinationContainer>
   )

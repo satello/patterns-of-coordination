@@ -1,0 +1,35 @@
+{
+  "name": "patterns-of-coordination",
+  "version": "0.0.1",
+  "repository": "https://github.com/satello/patterns-of-coordination",
+  "author": "satello",
+  "license": "MIT",
+  "scripts": {
+    "build": "CI= react-scripts build",
+    "start": "react-scripts start"
+  },
+  "dependencies": {
+    "antd": "^4.10.2",
+    "prop-types": "^15.7.2",
+    "rc-queue-anim": "^1.8.5",
+    "rc-tween-one": "^2.7.3",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^4.0.1",
+    "styled-components": "^5.2.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

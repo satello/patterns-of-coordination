@@ -98,7 +98,7 @@ export default ({resultsMatrix, restart}) => {
                   <PatternImg src={answersMap[k].img} />
                 </Col>
                 <Col lg={12}>
-                  <PatternName>{k.toUpperCase()}</PatternName>
+                  <PatternName>{k.toUpperCase()} <span style={{fontSize: '22px'}}>({Number(answersMap[k].score)})</span></PatternName>
                   <Score>{(((16 - Number(answersMap[k].score)) / 24) * 100).toFixed(1)} %</Score>
                 </Col>
               </Row>

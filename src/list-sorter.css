@@ -2,7 +2,6 @@
   position: relative;
   background: #e6e6e6;
   overflow: hidden;
-  height: 385px;
 }
 
 .list-sort-demo {
@@ -11,7 +10,6 @@
   width: 90%;
   position: relative;
   cursor: hand;
-  height: 305px;
 }
 .list-sort-demo > div{
   overflow: hidden;

@@ -37,7 +37,7 @@ const options = [
   ['Exploring new and innovative ideas, concepts, principles, and theories', 'Contacts with others where I will have an opportunity to examine and understand the underlying emotions, feelings, interactions, and behavior of people.', 'Of logic, reason, and systematic inquiry in an orderly process of problem definition, analysis, and solution.', 'The utilization of energy and resources to achieve goals where I will receive prompt and tangible feedback on the results of my efforts.'],
   ['Spend too much time deliberating and won\'t act.', 'Lack an awareness of the human aspects of the situation.', 'Get hung up on old ways of doing things and aren\'t willing to consider something new.', 'Haven\'t devoted sufficient time to make a careful analysis of all the relevant factors in the matter.'],
   ['Making certain that I\'m consistent, systematic, and rational.', 'The attainment of the immediate endpoint by whatever means or methods make the most sense at the time.', 'The possible future impact and long-range ramifications.', 'Established values, and the feelings or reactions others might have to my approach.'],
-  ['Caused others some unpleasantness and damaged our working relationship as a result.', 'Delayed in taking action, then lost out on the opportunity to achieve the objective.', 'Been content to use an old, familiar method on a task, then found that someone else had developed a new approach for it.', 'overlooked some relevant facts, or done a slipshod job in analyzing the data I\'ve assembled.']
+  ['Caused others some unpleasantness and damaged our working relationship as a result.', 'Delayed in taking action, then lost out on the opportunity to achieve the objective.', 'Been content to use an old, familiar method on a task, then found that someone else had developed a new approach for it.', 'Overlooked some relevant facts, or done a slipshod job in analyzing the data I\'ve assembled.']
 ]
 const answersMatrix = [
   [0,1,2,3],
@@ -74,10 +74,10 @@ export default () => {
         questionIndex === -1 ? (
           <div>
             <Row>
-              <Col lg={19}>
+              <Col lg={19} md={16} sm={18} xs={18}>
                 <div style={{fontWeight: 600}}>“Everything that irritates us about others can lead us to an understanding about ourselves.” - Carl Jung </div>
               </Col>
-              <Col lg={4} offset={1}>
+              <Col lg={4} offset={1} md={6} sm={5} xs={5}>
                 <Button type="primary" onClick={() => setQuestionIndex(0)}>Start!</Button>
               </Col>
             </Row>
@@ -89,21 +89,21 @@ export default () => {
           ) : (
             <div>
               <Row>
-                <Col lg={19}>
+                <Col lg={19} md={16} sm={18} xs={18}>
                   <div>Instructions: Arrange the given options from <i>most</i> like you to <i>least</i> like you. (drag and drop)</div>
                 </Col>
-                <Col lg={4} offset={1}>
+                <Col lg={4} offset={1} md={6} sm={5} xs={5}>
                   <Button onClick={resetTest}>Start Over</Button>
                 </Col>
               </Row>
               <TitleDiv>{questions[questionIndex]}:</TitleDiv>
               <ListSorter data={options[questionIndex]} newchildren={newChildren} />
               <ButtonsRow>
-                <Col lg={2} offset={18}>
+                <Col lg={12} md={12} sm={12} xs={12}>
                   <Button disabled={questionIndex === 0} onClick={() => setQuestionIndex(questionIndex - 1)}>Back</Button>
                 </Col>
-                <Col lg={2}>
-                  <Button type='primary' disabled={questionIndex === questions.length} onClick={() => setQuestionIndex(questionIndex + 1)}>Next</Button>
+                <Col lg={12} md={12} sm={12} xs={12}>
+                  <Button style={{float: 'right'}} type='primary' disabled={questionIndex === questions.length} onClick={() => setQuestionIndex(questionIndex + 1)}>Next</Button>
                 </Col>
               </ButtonsRow>
             </div>

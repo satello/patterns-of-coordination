@@ -45,12 +45,12 @@ class App extends PureComponent {
           <Layout>
             <StyledHeader>
               <Row>
-                <StyledCol lg={4} md={4} sm={16} xs={12}>
+                <StyledCol lg={4} md={4} sm={16} xs={0}>
                 </StyledCol>
                 <Col
                   lg={16}
                   md={16}
-                  xs={12}
+                  xs={24}
                   style={{
                     textAlign: "center",
                     color: "rgba(255, 255, 255, 0.85)",
@@ -58,7 +58,7 @@ class App extends PureComponent {
                 >
                   Patterns of Coordination
                 </Col>
-                <StyledCol lg={4} md={4} sm={8} xs={24} />
+                <StyledCol lg={4} md={4} sm={8} xs={0} />
               </Row>
             </StyledHeader>
             <StyledLayoutContent>
